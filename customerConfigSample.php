@@ -1,9 +1,9 @@
 <?php
 
-$networkCode = 21700827184;
+$networkCode = 21916186803;
 
 $jsonKeyFilePath = __DIR__."/config/googleServiceAccount.json";
-$impersonatedEmail = "insideall@headerbidding-199413.iam.gserviceaccount.com";
+$impersonatedEmail = "john@doe.iam.gserviceaccount.com";
 
 $entry = [
 	'type' => 'video', // Can be either display or

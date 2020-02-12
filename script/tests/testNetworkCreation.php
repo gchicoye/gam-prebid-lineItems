@@ -15,4 +15,6 @@ $foo = new App\Scripts\AdsApiGenerator;
 $foo->setCredentials($credentials)
 	->generateAdsApi();
 
-$network= (new \App\AdManager\NetworkManager)->makeTestNetwork();
+//$network= (new \App\AdManager\NetworkManager)->makeTestNetwork();
+
+$user = (new \App\AdManager\UserManager)->createUser("John Doe","john.doe@gmail.com");

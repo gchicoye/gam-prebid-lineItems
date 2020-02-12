@@ -2,6 +2,8 @@
 
 namespace App\AdManager;
 
+use Google\AdsApi\AdManager\v202002\User;
+
 class UserManager extends Manager
 {
 	protected $user;
@@ -22,12 +24,12 @@ class UserManager extends Manager
 		return $output;
 	}
 
-	public function createUser()
+	public function createUser($name, $email)
 	{
 		$userService = $this->serviceFactory->createUserService($this->session);
 		$user = new User();
-		$user->setName('Gabriel');
-		$user->setEmail('gabriel@insideall.com');
+		$user->setName($name);
+		$user->setEmail($email);
 		//$user->setName($userName);
 		$user->setRoleId('-1');
 		// Create the users on the server.
