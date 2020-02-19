@@ -31,7 +31,7 @@ class HeaderBiddingScript
 			die("Type must be either \"display\" or \"video\"");
 		}
 
-		if($params['type'] == 'display'){
+		if($params['type'] == 'video'){
 			$params['sizes'] = [[640, 360]];
 		}
 		foreach ($params['ssp'] as $ssp) {
