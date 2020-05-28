@@ -39,6 +39,7 @@ class VideoLineItemManager extends Manager
 	protected $lineItem;
 	protected $lineItemName;
 	protected $geoTargeting;
+	protected $isOopActive; // Not useful, for consistency with display
 
 
 	public function setOrderId($orderId)
@@ -98,7 +99,12 @@ class VideoLineItemManager extends Manager
 	public function setRootAdUnitId($rootAdUnitId)
 	{
 		$this->rootAdUnitId = $rootAdUnitId;
+		return $this;
+	}
 
+	public function setIsOopActive($isOopActive)
+	{
+		$this->isOopActive = $isOopActive;
 		return $this;
 	}
 
@@ -208,10 +214,11 @@ class VideoLineItemManager extends Manager
 		$attempts = 0;
 		do {
 			try {
-				$results = $lineItemService->updateLineItems([$this->setUpHeaderBiddingLineItem()
-					->setId($lineItem->getId())
-					->setStartDateTime($lineItem->getStartDateTime())
-					->setUnlimitedEndDateTime(true),
+				$results = $lineItemService->updateLineItems([
+					$this->setUpHeaderBiddingLineItem()
+						->setId($lineItem->getId())
+						->setStartDateTime($lineItem->getStartDateTime())
+						->setUnlimitedEndDateTime(true),
 				]);
 			} catch (ApiException $Exception) {
 				echo "\n\n======EXCEPTION======\n\n";
@@ -305,11 +312,17 @@ class VideoLineItemManager extends Manager
 		// Set the creative rotation type to even.
 		$lineItem->setCreativeRotationType(CreativeRotationType::EVEN);
 
-		$creativeMasterPlaceholder = new CreativePlaceholder();
-        $creativeMasterPlaceholder->setSize(new Size(640, 360, false));
+		$sizes = [[640, 360], [400,300], [640, 480]];
+		$placeHolders = [];
+		foreach($sizes as $size)
+		{
+			$creativeMasterPlaceholder = new CreativePlaceholder();
+			$creativeMasterPlaceholder->setSize(new Size($size[0], $size[1], false));
+			array_push($placeHolders, $creativeMasterPlaceholder);
+		}
 
 		// Set the size of creatives that can be associated with this line item.
-		$lineItem->setCreativePlaceholders([$creativeMasterPlaceholder]);
+		$lineItem->setCreativePlaceholders($placeHolders);
 
 		// Set the length of the line item to run.
 		//$lineItem->setStartDateTimeType(StartDateTimeType::IMMEDIATELY);

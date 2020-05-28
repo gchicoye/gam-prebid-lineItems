@@ -21,6 +21,7 @@ class SSPScript extends \App\AdManager\Manager
 	protected $ssp;
 	protected $currency;
 	protected $geoTargetingList;
+	protected $isOopActive = false;
 
 	public function __construct($params)
 	{
@@ -118,6 +119,7 @@ class SSPScript extends \App\AdManager\Manager
 				->setBucket($dfpValue['valueName'])
 				->setCustomCriterias($customCriterias)
 				->setRootAdUnitId($rootAdUnitId)
+				->setIsOopActive($this->isOopActive)
 				->setLineItemName();
 			if($geoTargeting !== null){
 				$lineItemManager->setGeoTargeting($geoTargeting);
@@ -134,7 +136,12 @@ class SSPScript extends \App\AdManager\Manager
 			if (empty($this->ssp)) {
 				echo "\n\nLine Item Prebid_".$dfpValue['valueName']." created/updated.\n";
 			} else {
-				echo "\n\nLine Item ".ucfirst($this->ssp).'_Prebid_'.$dfpValue['valueName']." created/updated.\n";
+				if($this->type == "display"){
+					echo "\n\nLine Item ".ucfirst($this->ssp).'_Prebid_'.$dfpValue['valueName']." created/updated.\n";
+				} else {
+					echo "\n\nLine Item ".ucfirst($this->ssp).'_Prebid_Video_'.$dfpValue['valueName']." created/updated.\n";
+				}
+				
 			}
 
 			echo round(($i / count($dfpValuesList)) * 100, 1)."% done\n\n";

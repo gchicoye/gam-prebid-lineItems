@@ -4,7 +4,8 @@ namespace App\AdManager;
 
 use Google\AdsApi\AdManager\Util\v202002\StatementBuilder;
 use Google\AdsApi\AdManager\v202002\CreativeService;
-use Google\AdsApi\AdManager\v202002\VideoRedirectCreative;
+use Google\AdsApi\AdManager\v202002\VastRedirectCreative;
+//use Google\AdsApi\AdManager\v202002\VideoRedirectAsset;
 use Google\AdsApi\AdManager\v202002\Size;
 use Google\AdsApi\AdManager\v202002\ApiException;
 
@@ -41,19 +42,21 @@ class VideoCreativeManager extends Manager
 		$output = [];
 		//Create a creativeName List
 		$creativeNameList = [];
-		for ($i = 1; $i <= 10; ++$i) {
+
+		$sizes = [[640, 360], [400,300], [640, 480]];
+		foreach($sizes as $size){
 			if (empty($this->ssp)) {
-				array_push($creativeNameList, "Prebid_Creative_".$i."_Video");
+				array_push($creativeNameList, "Prebid_Creative_Video - ".json_encode($size));
 			} else {
-				array_push($creativeNameList, ucfirst($this->ssp)."_Prebid_Creative_".$i."_Video");
+				array_push($creativeNameList, ucfirst($this->ssp)."_Prebid_Creative_Video - ".json_encode($size));
 			}
 		}
 
-		foreach ($creativeNameList as $creativeName) {
+		foreach ($creativeNameList as $i => $creativeName) {
 			if (empty(($foo = $this->getCreative($creativeName)))) {
-				$foo = $this->createCreative($creativeName, $this->createSnippet(), $this->advertiserId);
+				$foo = $this->createCreative($creativeName, $this->createSnippet(), $this->advertiserId, $sizes[$i]);
 			} else {
-				$foo = $this->updateCreative($creativeName, $this->createSnippet(), $this->advertiserId);
+				$foo = $this->updateCreative($creativeName, $this->createSnippet(), $this->advertiserId, $sizes[$i]);
 			}
 			array_push($output, $foo[0]);
 		}
@@ -131,22 +134,22 @@ class VideoCreativeManager extends Manager
 		return $output;
 	}
 
-	public function createCreative($creativeName, $snippet, $advertiserId)
+	public function createCreative($creativeName, $snippet, $advertiserId, $sizeArray)
 	{
 		$output = [];
 		$creativeService = $this->serviceFactory->createCreativeService($this->session);
 		$size = new Size();
-		$size->setWidth(640);
-		$size->setHeight(360);
+		$size->setWidth($sizeArray[0]);
+		$size->setHeight($sizeArray[1]);
 		$size->setIsAspectRatio(false);
 
-		$creative = new VideoRedirectCreative();
+		$creative = new VastRedirectCreative();
 
 		$creative->setName($creativeName)
 			->setAdvertiserId($advertiserId)
-			->setDestinationUrl($snippet)
-			->setAllowDurationOverride(true)
-			->setDuration(1)
+			->setVastXmlUrl($snippet)
+			//->setAllowDurationOverride(true)
+			->setDuration(1000)
 			->setSize($size);
 
 		// Create the order on the server.
@@ -181,7 +184,7 @@ class VideoCreativeManager extends Manager
 		return $output;
 	}
 
-	public function updateCreative($creativeName, $snippet, $advertiserId)
+	public function updateCreative($creativeName, $snippet, $advertiserId, $sizeArray)
 	{
 		$output = [];
 		$creativeService = $this->serviceFactory->createCreativeService($this->session);
@@ -194,17 +197,17 @@ class VideoCreativeManager extends Manager
             $statementBuilder->toStatement()
         );
 
-        $creative = $page->getResults()[0];
+		$creative = $page->getResults()[0];
 		$size = new Size();
-		$size->setWidth(640);
-		$size->setHeight(360);
+		$size->setWidth($sizeArray[0]);
+		$size->setHeight($sizeArray[1]);
 		$size->setIsAspectRatio(false);
 
 		$creative->setName($creativeName)
 			->setAdvertiserId($advertiserId)
-			->setDestinationUrl($snippet)
-			->setAllowDurationOverride(true)
-			->setDuration(1)
+			->setVastXmlUrl($snippet)
+			//->setAllowDurationOverride(true)
+			->setDuration(1000)
 			->setSize($size);
 
 		// Create the order on the server.

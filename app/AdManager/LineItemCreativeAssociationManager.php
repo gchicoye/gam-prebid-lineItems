@@ -8,6 +8,8 @@ use Google\AdsApi\AdManager\v202002\Size;
 use Google\AdsApi\AdManager\Util\v202002\StatementBuilder;
 use Google\AdsApi\AdManager\v202002\ApiException;
 
+use Google\AdsApi\AdManager\v202002\DeleteLineItemCreativeAssociations as DeleteLineItemCreativeAssociations;
+
 class LineItemCreativeAssociationManager extends Manager
 {
 	protected $lineItem;
@@ -48,6 +50,17 @@ class LineItemCreativeAssociationManager extends Manager
 		$licasToBeUpdated = [];
 		//We first get all Licas per Line Items
 		$existingLicas = $this->GetLicasForLineItem();
+		
+		if(count($existingLicas) > 0){
+			$this->deleteExistingLicas();
+		}
+		
+		foreach ($this->creativeList as $creative) {
+			array_push($licasToBeCreated, $creative['creativeId']);
+		}
+		
+		
+		/*
 		foreach ($this->creativeList as $creative) {
 			if (in_array($creative['creativeId'], $existingLicas)) {
 				array_push($licasToBeUpdated, $creative['creativeId']);
@@ -58,9 +71,24 @@ class LineItemCreativeAssociationManager extends Manager
 		if (!empty($licasToBeUpdated)) {
 			$this->UpdateLicas($licasToBeUpdated);
 		}
+		*/
 		if (!empty($licasToBeCreated)) {
 			$this->CreateLicas($licasToBeCreated);
 		}
+	}
+
+	private function deleteExistingLicas()
+	{
+		$statementBuilder = (new StatementBuilder())->where('lineItemId = :lineItemId')
+				->orderBy('lineItemId ASC, creativeId ASC')
+				->withBindVariableValue('lineItemId', $this->lineItem['lineItemId']);
+			$action = new DeleteLineItemCreativeAssociations();
+			$licaService = $this->serviceFactory->createLineItemCreativeAssociationService($this->session);
+			$result = $licaService
+				->performLineItemCreativeAssociationAction(
+					$action,
+					$statementBuilder->toStatement()
+				);
 	}
 
 	private function UpdateLicas($licasToBeUpdated)
@@ -101,6 +129,7 @@ class LineItemCreativeAssociationManager extends Manager
 			);
 		}
 		*/
+		
 	}
 
 	private function CreateLicas($licasToBeCreated)

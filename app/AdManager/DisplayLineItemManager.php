@@ -34,8 +34,10 @@ class DisplayLineItemManager extends Manager
 	protected $bucket;
 	protected $customCriterias;
 	protected $lineItem;
-	protected $lineItemName;
+	protected $isOopActive;
 	protected $geoTargeting;
+
+	public $lineItemName;
 
 
 	public function setOrderId($orderId)
@@ -95,7 +97,12 @@ class DisplayLineItemManager extends Manager
 	public function setRootAdUnitId($rootAdUnitId)
 	{
 		$this->rootAdUnitId = $rootAdUnitId;
+		return $this;
+	}
 
+	public function setIsOopActive($isOopActive)
+	{
+		$this->isOopActive = $isOopActive;
 		return $this;
 	}
 
@@ -324,6 +331,20 @@ class DisplayLineItemManager extends Manager
 			$creativePlaceholder->setSize($size);
 			array_push($output, $creativePlaceholder);
 		}
+
+		
+		//Create the Oop creative placeholder
+		if($this->isOopActive == true){
+			$size = new Size();
+			$size->setWidth(1);
+			$size->setHeight(1);
+			$size->setIsAspectRatio(false);
+			$creativePlaceholder = new CreativePlaceholder();
+			$creativePlaceholder->setSize($size);
+			$creativePlaceholder->setCreativeSizeType("INTERSTITIAL");
+			array_push($output, $creativePlaceholder);
+		}
+		
 
 		return $output;
 	}

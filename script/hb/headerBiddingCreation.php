@@ -2,7 +2,7 @@
 
 putenv('HOME='.dirname(__DIR__)."/../");
 require __DIR__.'/../../vendor/autoload.php';
-require __DIR__.'/../../customerConfig/Cambium.php';
+require __DIR__.'/../../customerConfigSample.php';
 
 $credentials = array(
 	"networkCode" => $networkCode,

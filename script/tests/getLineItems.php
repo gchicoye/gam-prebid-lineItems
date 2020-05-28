@@ -2,7 +2,7 @@
 
 putenv('HOME='.dirname(__DIR__)."/../");
 require __DIR__.'/../../vendor/autoload.php';
-require __DIR__.'/../../customerConfig/Gonzalo.php';
+require __DIR__.'/../../customerConfig/GalaxieMedia.php';
 
 
 $credentials = array(
@@ -17,7 +17,11 @@ $foo->setCredentials($credentials)
 	->generateAdsApi();
 
 
-$traffickerId = (new \App\AdManager\UserManager())->getUserId();
+$lineItem = (new \App\AdManager\DisplayLineItemManager);
+$lineItem->lineItemName = ("Justpremium_Prebid_8.00");
+$lineItem->setOrderId(2674817239)
+    ->getLineItem();
+var_dump($lineItem);
 
 $foo->deleteAdsApi();
 

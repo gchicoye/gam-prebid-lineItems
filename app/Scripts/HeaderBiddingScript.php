@@ -45,13 +45,17 @@ class HeaderBiddingScript
 				'adidKeyName' => substr("hb_adid_$ssp", 0, 20),
 				'sizeKeyName' => substr("hb_size_$ssp", 0, 20),
 				'currency' => $params['currency'],
-				'ssp' => $ssp
+				'ssp' => $ssp,
+
 			];
 			if(isset($params['geoTargetingList'])){
 				$param['geoTargetingList'] = $params['geoTargetingList'];
 			}
-			if(isset($params['customTargeting'])){
-				$param['customTargeting'] = $params['customTargeting'];
+			if(isset($params['geoTargetingList'])){
+				$param['geoTargetingList'] = $params['geoTargetingList'];
+			}
+			if(isset($params['isOopActive'])){
+				$param['isOopActive'] = $params['isOopActive'];
 			}
 			$script = new SSPScript($param);
 
