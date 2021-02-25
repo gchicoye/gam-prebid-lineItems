@@ -2,13 +2,13 @@
 
 namespace App\AdManager;
 
-use Google\AdsApi\AdManager\v202002\LineItemCreativeAssociation;
-use Google\AdsApi\AdManager\v202002\LineItemCreativeAssociationService;
-use Google\AdsApi\AdManager\v202002\Size;
-use Google\AdsApi\AdManager\Util\v202002\StatementBuilder;
-use Google\AdsApi\AdManager\v202002\ApiException;
+use Google\AdsApi\AdManager\v202102\LineItemCreativeAssociation;
+use Google\AdsApi\AdManager\v202102\LineItemCreativeAssociationService;
+use Google\AdsApi\AdManager\v202102\Size;
+use Google\AdsApi\AdManager\Util\v202102\StatementBuilder;
+use Google\AdsApi\AdManager\v202102\ApiException;
 
-use Google\AdsApi\AdManager\v202002\DeleteLineItemCreativeAssociations as DeleteLineItemCreativeAssociations;
+use Google\AdsApi\AdManager\v202102\DeleteLineItemCreativeAssociations as DeleteLineItemCreativeAssociations;
 
 class LineItemCreativeAssociationManager extends Manager
 {

@@ -2,26 +2,26 @@
 
 namespace App\AdManager;
 
-use Google\AdsApi\AdManager\v202002\AdUnitTargeting;
-use Google\AdsApi\AdManager\v202002\CostType;
-use Google\AdsApi\AdManager\v202002\CreativePlaceholder;
-use Google\AdsApi\AdManager\v202002\CreativeRotationType;
-use Google\AdsApi\AdManager\v202002\CustomCriteria;
-use Google\AdsApi\AdManager\v202002\CustomCriteriaComparisonOperator;
-use Google\AdsApi\AdManager\v202002\CustomCriteriaSet;
-use Google\AdsApi\AdManager\v202002\CustomCriteriaSetLogicalOperator;
-use Google\AdsApi\AdManager\v202002\Goal;
-use Google\AdsApi\AdManager\v202002\GoalType;
-use Google\AdsApi\AdManager\v202002\InventoryTargeting;
-use Google\AdsApi\AdManager\v202002\LineItem;
-use Google\AdsApi\AdManager\v202002\LineItemService;
-use Google\AdsApi\AdManager\v202002\LineItemType;
-use Google\AdsApi\AdManager\v202002\Money;
-use Google\AdsApi\AdManager\v202002\Size;
-use Google\AdsApi\AdManager\v202002\StartDateTimeType;
-use Google\AdsApi\AdManager\v202002\Targeting;
-use Google\AdsApi\AdManager\Util\v202002\StatementBuilder;
-use Google\AdsApi\AdManager\v202002\ApiException;
+use Google\AdsApi\AdManager\v202102\AdUnitTargeting;
+use Google\AdsApi\AdManager\v202102\CostType;
+use Google\AdsApi\AdManager\v202102\CreativePlaceholder;
+use Google\AdsApi\AdManager\v202102\CreativeRotationType;
+use Google\AdsApi\AdManager\v202102\CustomCriteria;
+use Google\AdsApi\AdManager\v202102\CustomCriteriaComparisonOperator;
+use Google\AdsApi\AdManager\v202102\CustomCriteriaSet;
+use Google\AdsApi\AdManager\v202102\CustomCriteriaSetLogicalOperator;
+use Google\AdsApi\AdManager\v202102\Goal;
+use Google\AdsApi\AdManager\v202102\GoalType;
+use Google\AdsApi\AdManager\v202102\InventoryTargeting;
+use Google\AdsApi\AdManager\v202102\LineItem;
+use Google\AdsApi\AdManager\v202102\LineItemService;
+use Google\AdsApi\AdManager\v202102\LineItemType;
+use Google\AdsApi\AdManager\v202102\Money;
+use Google\AdsApi\AdManager\v202102\Size;
+use Google\AdsApi\AdManager\v202102\StartDateTimeType;
+use Google\AdsApi\AdManager\v202102\Targeting;
+use Google\AdsApi\AdManager\Util\v202102\StatementBuilder;
+use Google\AdsApi\AdManager\v202102\ApiException;
 
 class DisplayLineItemManager extends Manager
 {

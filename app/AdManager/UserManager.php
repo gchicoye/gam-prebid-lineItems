@@ -2,7 +2,7 @@
 
 namespace App\AdManager;
 
-use Google\AdsApi\AdManager\v202002\User;
+use Google\AdsApi\AdManager\v202102\User;
 
 class UserManager extends Manager
 {

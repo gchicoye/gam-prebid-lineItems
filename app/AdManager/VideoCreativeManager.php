@@ -2,12 +2,12 @@
 
 namespace App\AdManager;
 
-use Google\AdsApi\AdManager\Util\v202002\StatementBuilder;
-use Google\AdsApi\AdManager\v202002\CreativeService;
-use Google\AdsApi\AdManager\v202002\VastRedirectCreative;
-//use Google\AdsApi\AdManager\v202002\VideoRedirectAsset;
-use Google\AdsApi\AdManager\v202002\Size;
-use Google\AdsApi\AdManager\v202002\ApiException;
+use Google\AdsApi\AdManager\Util\v202102\StatementBuilder;
+use Google\AdsApi\AdManager\v202102\CreativeService;
+use Google\AdsApi\AdManager\v202102\VastRedirectCreative;
+//use Google\AdsApi\AdManager\v202102\VideoRedirectAsset;
+use Google\AdsApi\AdManager\v202102\Size;
+use Google\AdsApi\AdManager\v202102\ApiException;
 
 class VideoCreativeManager extends Manager
 {

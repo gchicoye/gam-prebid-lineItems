@@ -1,6 +1,6 @@
 {
     "require": {
-        "googleads/googleads-php-lib": "^45.0"
+        "googleads/googleads-php-lib": "^52.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.13"

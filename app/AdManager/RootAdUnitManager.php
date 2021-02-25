@@ -2,7 +2,7 @@
 
 namespace App\AdManager;
 
-use Google\AdsApi\AdManager\v202002\NetworkService;
+use Google\AdsApi\AdManager\v202102\NetworkService;
 
 class RootAdUnitManager extends Manager
 {

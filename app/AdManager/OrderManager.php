@@ -2,10 +2,10 @@
 
 namespace App\AdManager;
 
-use Google\AdsApi\AdManager\v202002\Order;
-use Google\AdsApi\AdManager\Util\v202002\StatementBuilder;
-use Google\AdsApi\AdManager\v202002\ApproveOrders as ApproveOrdersAction;
-use Google\AdsApi\AdManager\v202002\ApiException;
+use Google\AdsApi\AdManager\v202102\Order;
+use Google\AdsApi\AdManager\Util\v202102\StatementBuilder;
+use Google\AdsApi\AdManager\v202102\ApproveOrders as ApproveOrdersAction;
+use Google\AdsApi\AdManager\v202102\ApiException;
 
 
 class OrderManager extends Manager

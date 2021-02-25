@@ -2,9 +2,9 @@
 
 namespace App\AdManager;
 
-use Google\AdsApi\AdManager\v202002\CustomTargetingValue;
-use Google\AdsApi\AdManager\v202002\CustomTargetingValueMatchType;
-use Google\AdsApi\AdManager\Util\v202002\StatementBuilder;
+use Google\AdsApi\AdManager\v202102\CustomTargetingValue;
+use Google\AdsApi\AdManager\v202102\CustomTargetingValueMatchType;
+use Google\AdsApi\AdManager\Util\v202102\StatementBuilder;
 
 class ValueManager extends Manager
 {

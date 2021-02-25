@@ -6,7 +6,7 @@ $jsonKeyFilePath = __DIR__."/config/googleServiceAccount.json";
 $impersonatedEmail = "john@doe.iam.gserviceaccount.com";
 
 $entry = [
-	'type' => 'video', // Can be either display or video
+	'type' => 'display', // Can be either display or video
 	'ssp' => ['appnexus'], // Needs to be bidder code defined in prebid documentation, ie appnexus, rubicon, improvedigital, smartadserver
 	'priceGranularity' => 'dense', // can be 'low', 'med', 'high', 'auto','dense', 'test'
 	'currency' => 'EUR',

@@ -2,9 +2,9 @@
 
 namespace App\AdManager;
 
-use Google\AdsApi\AdManager\v202002\Company;
-use Google\AdsApi\AdManager\v202002\CompanyType;
-use Google\AdsApi\AdManager\Util\v202002\StatementBuilder;
+use Google\AdsApi\AdManager\v202102\Company;
+use Google\AdsApi\AdManager\v202102\CompanyType;
+use Google\AdsApi\AdManager\Util\v202102\StatementBuilder;
 
 class CompanyManager extends Manager
 {
